@@ -15,7 +15,6 @@
 
 global.Config = require('./config/config');
 
-global.Db = require('origindb')('config/db');
 
 const ProcessManager = require('./process-manager');
 
@@ -278,12 +277,12 @@ class Battle {
 			this.score = [parseInt(lines[2]), parseInt(lines[3])];
 			break;
 		case 'caught':
-			let curTeam = Db('players').get(lines[2]);
+			let curTeam = Db.players.get(lines[2]);
 			if (curTeam.party.length < 6) {
 				let newSet = Users.get('sgserver').wildTeams[lines[2]];
 				newSet = SG.unpackTeam(newSet)[0];
 				curTeam.party.push(newSet);
-				Db('players').set(lines[2][0], curTeam);
+				Db.players.set(lines[2][0], curTeam);
 			} else {
 				let newSet = Users.get('sgserver').wildTeams[lines[2]];
 				let response = curTeam.boxPoke(newSet, 1);
