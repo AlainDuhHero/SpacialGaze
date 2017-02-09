@@ -117,6 +117,7 @@ global.Users = require('./users');
 
 global.Punishments = require('./punishments');
 
+global.Console = require('./console.js');
 global.Chat = require('./chat');
 global.Rooms = require('./rooms');
 
@@ -125,6 +126,9 @@ global.Tells = require('./tells.js');
 delete process.send; // in case we're a child process
 global.Verifier = require('./verifier');
 Verifier.PM.spawn();
+
+global.SG = require('./SG.js').SG;
+//SG.readGameData();
 
 global.Tournaments = require('./tournaments');
 
